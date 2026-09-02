@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: Techsche Campus Admission API
+  version: 1.0.0
+  description: API documentation for the Techsche Campus Admission System
+  contact:
+    name: Techsche Campus
+paths:
+  /api/applications/start/:
+    post:
+      operationId: applications_start_create
+      description: Creates a new draft admission application and generates a unique
+        application number for the current year.
+      summary: Start a new admission application
+      tags:
+      - Applications
+      security:
+      - jwtAuth: []
+      - bearerAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationStart'
+          description: ''
+components:
+  schemas:
+    ApplicationStart:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        application_number:
+          type: string
+          readOnly: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - application_number
+      - created_at
+      - id
+      - status
+    StatusEnum:
+      enum:
+      - draft
+      - pending
+      - under_review
+      - admitted
+      - rejected
+      - cancelled
+      type: string
+      description: |-
+        * `draft` - Draft
+        * `pending` - Pending
+        * `under_review` - Under Review
+        * `admitted` - Admitted
+        * `rejected` - Rejected
+        * `cancelled` - Cancelled
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

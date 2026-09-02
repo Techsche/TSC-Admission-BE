@@ -1,0 +1,356 @@
+{% for application in students %}
+
+<tr>
+
+    <!-- =================================================
+         SL NO
+    ================================================== -->
+
+    <td class="student-sl">
+
+        {{ students.start_index|add:forloop.counter0 }}
+
+    </td>
+
+
+    <!-- =================================================
+         APPLICATION NUMBER
+    ================================================== -->
+
+    <td>
+
+        <a href="#"
+            class="application-number"
+        >
+            {{ application.application_number }}
+        </a>
+
+    </td>
+
+
+    <!-- =================================================
+         FULL NAME
+    ================================================== -->
+
+    <td>
+
+        <div class="student-name-cell">
+
+            <div class="student-avatar">
+
+                {% if application.full_name %}
+                    {{ application.full_name|first|upper }}
+                {% else %}
+                    ?
+                {% endif %}
+
+            </div>
+
+
+            <div class="student-name-info">
+
+                <strong>
+
+                    {% if application.full_name %}
+                        {{ application.full_name }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </strong>
+
+                <span>
+                    {% if application.profile_completed %}
+                        Profile completed
+                    {% else %}
+                        Profile incomplete
+                    {% endif %}
+                </span>
+
+            </div>
+
+        </div>
+
+    </td>
+
+
+    <!-- =================================================
+         EMAIL
+    ================================================== -->
+
+    <td>
+
+        {% if application.email %}
+
+            <a
+                href="mailto:{{ application.email }}"
+                class="student-email"
+            >
+                {{ application.email }}
+            </a>
+
+        {% else %}
+
+            <span class="muted-value">
+                —
+            </span>
+
+        {% endif %}
+
+    </td>
+
+
+    <!-- =================================================
+         MOBILE
+    ================================================== -->
+
+    <td>
+
+        {% if application.mobile %}
+
+            <a
+                href="tel:{{ application.mobile }}"
+                class="student-mobile"
+            >
+                {{ application.mobile }}
+            </a>
+
+        {% else %}
+
+            <span class="muted-value">
+                —
+            </span>
+
+        {% endif %}
+
+    </td>
+
+
+    <!-- =================================================
+         PARENTS
+    ================================================== -->
+
+    <td>
+
+        <div class="parents-cell">
+
+            <div class="parent-item">
+
+                <span class="parent-label">
+                    Father
+                </span>
+
+                <div class="parent-info">
+
+                    <strong>
+                        {{ application.father_name|default:"—" }}
+                    </strong>
+
+                    {% if application.father_mobile %}
+
+                        <a
+                            href="tel:{{ application.father_mobile }}"
+                        >
+                            {{ application.father_mobile }}
+                        </a>
+
+                    {% else %}
+
+                        <span class="parent-no-mobile">
+                            —
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="parent-divider"></div>
+
+
+            <div class="parent-item">
+
+                <span class="parent-label">
+                    Mother
+                </span>
+
+                <div class="parent-info">
+
+                    <strong>
+                        {{ application.mother_name|default:"—" }}
+                    </strong>
+
+                    {% if application.mother_mobile %}
+
+                        <a
+                            href="tel:{{ application.mother_mobile }}"
+                        >
+                            {{ application.mother_mobile }}
+                        </a>
+
+                    {% else %}
+
+                        <span class="parent-no-mobile">
+                            —
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </td>
+
+
+    <!-- =================================================
+         APPLICATION STATUS
+    ================================================== -->
+
+    <td>
+
+        <span
+            class="application-status status-{{ application.status }}"
+        >
+
+            <span class="status-dot"></span>
+
+            {{ application.get_status_display }}
+
+        </span>
+
+    </td>
+
+
+    <!-- =================================================
+         DOCUMENTS
+    ================================================== -->
+
+    <td>
+
+        <div class="documents-cell">
+
+            {% for document in application.documents.all %}
+
+                <span
+                    class="document-badge document-{{ document.document_type }}"
+                    title="{{ document.get_document_type_display }}"
+                >
+
+                    {{ document.get_document_type_display }}
+
+                </span>
+
+            {% empty %}
+
+                <span class="no-documents">
+                    -
+                </span>
+
+            {% endfor %}
+
+        </div>
+
+    </td>
+
+
+    <!-- =================================================
+         ACTIVE
+    ================================================== -->
+
+    <td>
+
+        <button
+            type="button"
+            class="active-toggle {% if application.is_active %}active{% endif %}"
+            data-id="{{ application.id }}"
+            data-active="{% if application.is_active %}true{% else %}false{% endif %}"
+            aria-label="Toggle active status"
+        >
+
+            <span class="active-toggle-track">
+
+                <span class="active-toggle-thumb"></span>
+
+            </span>
+
+        </button>
+
+    </td>
+
+
+    <!-- =================================================
+         ACTIONS
+    ================================================== -->
+
+    <td>
+
+        <div class="student-actions">
+
+            <!-- VIEW -->
+
+            <a
+                href="#"
+                class="student-action view"
+                title="View"
+                aria-label="View student"
+            >
+                <span>⌕</span>
+            </a>
+
+
+            <!-- EDIT -->
+
+            <a
+                href="#"
+                class="student-action edit"
+                title="Edit"
+                aria-label="Edit student"
+            >
+                <span>✎</span>
+            </a>
+
+
+            <!-- DELETE -->
+
+            <button
+                type="button"
+                class="student-action delete delete-student"
+                data-id="{{ application.id }}"
+                data-name="{{ application.full_name }}"
+                title="Delete"
+                aria-label="Delete student"
+            >
+                <span>×</span>
+            </button>
+
+        </div>
+
+    </td>
+
+</tr>
+
+
+{% empty %}
+
+<tr>
+
+    <td colspan="10">
+
+        <div class="table-empty">
+
+            <span>
+                No students found.
+            </span>
+
+        </div>
+
+    </td>
+
+</tr>
+
+{% endfor %}

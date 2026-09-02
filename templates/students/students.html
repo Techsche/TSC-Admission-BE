@@ -1,0 +1,383 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Students | Techsche Campus
+{% endblock %}
+
+{% block page_heading %}
+    Students
+{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'css/student.css' %}"
+>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="students-page">
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <div class="students-page-header">
+
+        <div class="students-page-title">
+
+            <span class="students-eyebrow">
+                ADMISSION MANAGEMENT
+            </span>
+
+            <h2>
+                Students
+            </h2>
+
+            <p>
+                Manage student applications, documents and admission status.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOOLBAR
+    ====================================================== -->
+
+    <div class="students-toolbar">
+
+        <div class="students-search-box">
+
+            <span
+                class="students-search-icon"
+                aria-hidden="true"
+            >
+                ⌕
+            </span>
+
+            <input
+                type="search"
+                id="studentSearch"
+                placeholder="Search by application no, name, email or mobile..."
+                autocomplete="off"
+                aria-label="Search students"
+            >
+
+            <button
+                type="button"
+                id="clearStudentSearch"
+                class="students-clear-search"
+                aria-label="Clear search"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="students-toolbar-right">
+
+            <div class="students-result-count">
+
+                <strong id="studentCount">
+                    {{ students.paginator.count }}
+                </strong>
+        {% if students.paginator.count == 1 %}
+            <span>
+                students
+            </span>
+        {%  endif %} 
+    </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         STUDENTS CARD
+    ====================================================== -->
+
+    <div class="students-card">
+
+
+        <!-- =================================================
+             TABLE
+        ================================================== -->
+
+        <div class="students-table-wrapper">
+
+            <table class="students-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="col-sl">
+                            Sl.No
+                        </th>
+
+                        <th class="col-application">
+                            Application No.
+                        </th>
+
+                        <th class="col-student">
+                            Full Name
+                        </th>
+
+                        <th class="col-email">
+                            Email
+                        </th>
+
+                        <th class="col-mobile">
+                            Mobile
+                        </th>
+
+                        <th class="col-parents">
+                            Parents Details
+                        </th>
+
+                        <th class="col-status">
+                            Application Status
+                        </th>
+
+                        <th class="col-documents">
+                            Docs Attached
+                        </th>
+
+                        <th class="col-active">
+                            Is Active
+                        </th>
+
+                        <th class="col-action">
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentsTableBody">
+
+                    {% if students.object_list %}
+
+                        {% include "students/_student_rows.html" %}
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- =================================================
+             LOADING
+        ================================================== -->
+
+        <div
+            id="studentsLoading"
+            class="students-loading"
+            hidden
+        >
+
+            <div class="students-spinner"></div>
+
+            <span>
+                Loading students...
+            </span>
+
+        </div>
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================== -->
+
+        <div
+            id="studentsEmpty"
+            class="students-empty"
+            {% if students.object_list %}
+                hidden
+            {% endif %}
+        >
+
+            <div class="students-empty-icon">
+                ⌕
+            </div>
+
+            <h3 id="studentsEmptyTitle">
+                {% if request.GET.search %}
+                    No results found
+                {% else %}
+                    No students found
+                {% endif %}
+            </h3>
+
+            <p id="studentsEmptyMessage">
+
+                {% if request.GET.search %}
+
+                    No students match your search.
+                    Try a different search term.
+
+                {% else %}
+
+                    There are no student applications yet.
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             PAGINATION
+        ================================================== -->
+
+        <div
+            class="students-pagination"
+            id="studentsPagination"
+            {% if not students.object_list %}
+                hidden
+            {% endif %}
+        >
+
+            <div class="students-pagination-info">
+
+                <span>
+                    Showing
+                </span>
+
+                <strong id="paginationStart">
+                    {% if students.object_list %}
+                        {{ students.start_index }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </strong>
+
+                <span>
+                    -
+                </span>
+
+                <strong id="paginationEnd">
+                    {% if students.object_list %}
+                        {{ students.end_index }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </strong>
+
+                <span>
+                    of
+                </span>
+
+                <strong id="paginationTotal">
+                    {{ students.paginator.count }}
+                </strong>
+
+            </div>
+
+
+            <div
+                id="paginationButtons"
+                class="students-pagination-buttons"
+            >
+
+                {% if students.has_previous %}
+
+                    <button
+                        type="button"
+                        class="students-page-btn"
+                        data-page="{{ students.previous_page_number }}"
+                        aria-label="Previous page"
+                    >
+                        ‹
+                    </button>
+
+                {% endif %}
+
+
+                {% for page in students.paginator.page_range %}
+
+                    {% if page == students.number %}
+
+                        <button
+                            type="button"
+                            class="students-page-btn active"
+                            data-page="{{ page }}"
+                            aria-current="page"
+                        >
+                            {{ page }}
+                        </button>
+
+                    {% elif page == 1 or page == students.paginator.num_pages %}
+
+                        <button
+                            type="button"
+                            class="students-page-btn"
+                            data-page="{{ page }}"
+                        >
+                            {{ page }}
+                        </button>
+
+                    {% elif page >= students.number|add:"-2" and page <= students.number|add:"2" %}
+
+                        <button
+                            type="button"
+                            class="students-page-btn"
+                            data-page="{{ page }}"
+                        >
+                            {{ page }}
+                        </button>
+
+                    {% elif page == students.number|add:"-3" or page == students.number|add:"3" %}
+
+                        <span class="students-pagination-dots">
+                            …
+                        </span>
+
+                    {% endif %}
+
+                {% endfor %}
+
+
+                {% if students.has_next %}
+
+                    <button
+                        type="button"
+                        class="students-page-btn"
+                        data-page="{{ students.next_page_number }}"
+                        aria-label="Next page"
+                    >
+                        ›
+                    </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="{% static 'js/student.js' %}"></script>
+
+{% endblock %}

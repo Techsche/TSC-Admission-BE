@@ -1,0 +1,239 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/favicon.jpeg' %}"
+    />
+    <title>Admin Login | Techsche Campus</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+
+  <body>
+    <div class="login-page">
+      <!-- =========================================
+         BRAND PANEL
+    ========================================== -->
+      <section class="brand-panel">
+        <div class="brand-content">
+          <div class="brand-logo">
+            <img src="{% static 'images/logo.png' %}" alt="Techsche Campus" />
+          </div>
+
+          <div class="brand-message">
+            <span class="eyebrow"> ADMINISTRATION </span>
+
+            <h1>
+              Manage your
+              <span>campus</span>
+              with confidence.
+            </h1>
+
+            <p>
+              Access applications, students, documents, qualifications and
+              reports from one secure administration platform.
+            </p>
+          </div>
+
+          <div class="brand-footer">
+            <span> © {% now "Y" %} Techsche Campus </span>
+
+            <span class="status">
+              <i></i>
+              Secure System
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================
+         LOGIN PANEL
+    ========================================== -->
+      <section class="login-panel">
+        <div class="login-container">
+          <div class="mobile-logo">
+            <div class="brand-logo">
+              <span class="logo-mark">T</span>
+
+              <div>
+                <strong>TECHSCHE</strong>
+                <span>CAMPUS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="login-header">
+            <span class="eyebrow"> WELCOME BACK </span>
+
+            <h2>Admin Sign In</h2>
+
+            <p>Sign in to access the administration dashboard.</p>
+          </div>
+
+          <!-- =========================================
+                 ERROR MESSAGE
+            ========================================== -->
+          {% if form.errors %}
+
+          <div class="alert alert-error">
+            <div class="alert-icon">!</div>
+
+            <div>
+              <strong>Unable to sign in</strong>
+
+              <p>Please check your username and password and try again.</p>
+            </div>
+          </div>
+
+          {% endif %}
+
+          <!-- =========================================
+                 LOGIN FORM
+            ========================================== -->
+          <form method="post" class="login-form" novalidate>
+            {% csrf_token %}
+
+            <input type="hidden" name="next" value="{{ next }}" />
+
+            <!-- USERNAME -->
+            <div class="form-group">
+              <label for="id_username"> Username </label>
+
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </span>
+
+                <input
+                  type="text"
+                  name="username"
+                  id="id_username"
+                  autocomplete="username"
+                  placeholder="Enter your username"
+                  required
+                  autofocus
+                />
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-group">
+              <div class="label-row">
+                <label for="id_password"> Password </label>
+              </div>
+
+              <div class="input-wrapper">
+                <span class="input-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <rect x="3" y="10" width="18" height="11" rx="2" />
+
+                    <path d="M7 10V7a5 5 0 0 1 10 0v3" />
+                  </svg>
+                </span>
+
+                <input
+                  type="password"
+                  name="password"
+                  id="id_password"
+                  autocomplete="current-password"
+                  placeholder="Enter your password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  id="passwordToggle"
+                  aria-label="Show password"
+                >
+                  <svg
+                    id="eyeIcon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path
+                      d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"
+                    />
+
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- OPTIONS -->
+            <div class="form-options">
+              <label class="remember">
+                <input type="checkbox" name="remember" />
+
+                <span class="checkmark"></span>
+
+                <span> Remember me </span>
+              </label>
+            </div>
+
+            <!-- SUBMIT -->
+            <button type="submit" class="login-button" id="loginButton">
+              <span class="button-text"> Sign In </span>
+
+              <span class="button-arrow"> → </span>
+            </button>
+          </form>
+
+          <!-- =========================================
+                 SECURITY
+            ========================================== -->
+          <div class="security-note">
+            <div class="security-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z" />
+
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+
+            <div>
+              <strong>Secure access</strong>
+
+              <p>
+                This area is restricted to authorized Techsche Campus staff.
+              </p>
+            </div>
+          </div>
+
+          <div class="login-footer">Techsche Campus Administration</div>
+        </div>
+      </section>
+    </div>
+
+    <script src="{% static 'js/login.js' %}"></script>
+  </body>
+</html>

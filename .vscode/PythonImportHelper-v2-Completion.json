@@ -1,0 +1,1069 @@
+[
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "transaction",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse_lazy",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "LogoutView",
+        "importPath": "django.contrib.auth.views",
+        "description": "django.contrib.auth.views",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.views",
+        "documentation": {}
+    },
+    {
+        "label": "LoginView",
+        "importPath": "django.contrib.auth.views",
+        "description": "django.contrib.auth.views",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.views",
+        "documentation": {}
+    },
+    {
+        "label": "LoginRequiredMixin",
+        "importPath": "django.contrib.auth.mixins",
+        "description": "django.contrib.auth.mixins",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.mixins",
+        "documentation": {}
+    },
+    {
+        "label": "TemplateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "RedirectView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "admissions.models",
+        "description": "admissions.models",
+        "isExtraImport": true,
+        "detail": "admissions.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "AllowAny",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "AllowAny",
+        "importPath": "rest_framework.permissions",
+        "description": "rest_framework.permissions",
+        "isExtraImport": true,
+        "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "extend_schema",
+        "importPath": "drf_spectacular.utils",
+        "description": "drf_spectacular.utils",
+        "isExtraImport": true,
+        "detail": "drf_spectacular.utils",
+        "documentation": {}
+    },
+    {
+        "label": "extend_schema",
+        "importPath": "drf_spectacular.utils",
+        "description": "drf_spectacular.utils",
+        "isExtraImport": true,
+        "detail": "drf_spectacular.utils",
+        "documentation": {}
+    },
+    {
+        "label": "OpenApiExample",
+        "importPath": "drf_spectacular.utils",
+        "description": "drf_spectacular.utils",
+        "isExtraImport": true,
+        "detail": "drf_spectacular.utils",
+        "documentation": {}
+    },
+    {
+        "label": "MultiPartParser",
+        "importPath": "rest_framework.parsers",
+        "description": "rest_framework.parsers",
+        "isExtraImport": true,
+        "detail": "rest_framework.parsers",
+        "documentation": {}
+    },
+    {
+        "label": "FormParser",
+        "importPath": "rest_framework.parsers",
+        "description": "rest_framework.parsers",
+        "isExtraImport": true,
+        "detail": "rest_framework.parsers",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "SpectacularAPIView",
+        "importPath": "drf_spectacular.views",
+        "description": "drf_spectacular.views",
+        "isExtraImport": true,
+        "detail": "drf_spectacular.views",
+        "documentation": {}
+    },
+    {
+        "label": "SpectacularRedocView",
+        "importPath": "drf_spectacular.views",
+        "description": "drf_spectacular.views",
+        "isExtraImport": true,
+        "detail": "drf_spectacular.views",
+        "documentation": {}
+    },
+    {
+        "label": "SpectacularSwaggerView",
+        "importPath": "drf_spectacular.views",
+        "description": "drf_spectacular.views",
+        "isExtraImport": true,
+        "detail": "drf_spectacular.views",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "AccountsConfig",
+        "kind": 6,
+        "importPath": "accounts.apps",
+        "description": "accounts.apps",
+        "peekOfCode": "class AccountsConfig(AppConfig):\n    name = 'accounts'",
+        "detail": "accounts.apps",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "accounts.urls",
+        "description": "accounts.urls",
+        "peekOfCode": "urlpatterns = [\n    # Login\n    path(\n        \"login/\",\n        CustomLoginView.as_view(),\n        name=\"login\",\n    ),\n    # Logout\n    path(\n        \"logout/\",",
+        "detail": "accounts.urls",
+        "documentation": {}
+    },
+    {
+        "label": "CustomLoginView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class CustomLoginView(LoginView):\n    template_name = \"accounts/login.html\"\n    next_page = reverse_lazy(\"dashboard\")\nclass DashboardView(LoginRequiredMixin, TemplateView):\n    template_name = \"dashboard/dashboard.html\"\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context[\"total_applications\"] = 0\n        context[\"pending_applications\"] = 0\n        context[\"approved_applications\"] = 0",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "DashboardView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class DashboardView(LoginRequiredMixin, TemplateView):\n    template_name = \"dashboard/dashboard.html\"\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context[\"total_applications\"] = 0\n        context[\"pending_applications\"] = 0\n        context[\"approved_applications\"] = 0\n        context[\"applications_today\"] = 0\n        return context\nclass ApplicationsView(LoginRequiredMixin, TemplateView):",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationsView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class ApplicationsView(LoginRequiredMixin, TemplateView):\n    template_name = \"applications/applications.html\"\nclass StudentListView(ListView):\n    model = Application\n    template_name = \"students/students.html\"\n    context_object_name = \"students\"\n    paginate_by = 10\n    def get_queryset(self):\n        queryset = (\n            Application.objects",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "StudentListView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class StudentListView(ListView):\n    model = Application\n    template_name = \"students/students.html\"\n    context_object_name = \"students\"\n    paginate_by = 10\n    def get_queryset(self):\n        queryset = (\n            Application.objects\n            .prefetch_related(\"documents\")\n            .select_related(\"education__highest_qualification\")",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "DocumentsView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class DocumentsView(LoginRequiredMixin, TemplateView):\n    template_name = \"documents/documents.html\"\nclass UsersView(LoginRequiredMixin, TemplateView):\n    template_name = \"users/users.html\"\nclass SettingsView(LoginRequiredMixin, TemplateView):\n    template_name = \"settings/settings.html\"",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "UsersView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class UsersView(LoginRequiredMixin, TemplateView):\n    template_name = \"users/users.html\"\nclass SettingsView(LoginRequiredMixin, TemplateView):\n    template_name = \"settings/settings.html\"",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "SettingsView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class SettingsView(LoginRequiredMixin, TemplateView):\n    template_name = \"settings/settings.html\"",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "admissions.migrations.0001_initial",
+        "description": "admissions.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='ApplicationCounter',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "admissions.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "admissions.migrations.0002_remove_application_reviewed_at_and_more",
+        "description": "admissions.migrations.0002_remove_application_reviewed_at_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('admissions', '0001_initial'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='application',\n            name='reviewed_at',\n        ),\n        migrations.RemoveField(",
+        "detail": "admissions.migrations.0002_remove_application_reviewed_at_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "admissions.migrations.0003_educationalqualification_and_more",
+        "description": "admissions.migrations.0003_educationalqualification_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('admissions', '0002_remove_application_reviewed_at_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='EducationalQualification',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('qualification', models.CharField(max_length=100)),",
+        "detail": "admissions.migrations.0003_educationalqualification_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "admissions.migrations.0004_application_is_active_and_more",
+        "description": "admissions.migrations.0004_application_is_active_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('admissions', '0003_educationalqualification_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='application',\n            name='is_active',\n            field=models.BooleanField(default=True),\n        ),",
+        "detail": "admissions.migrations.0004_application_is_active_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "AdmissionsConfig",
+        "kind": 6,
+        "importPath": "admissions.apps",
+        "description": "admissions.apps",
+        "peekOfCode": "class AdmissionsConfig(AppConfig):\n    name = 'admissions'",
+        "detail": "admissions.apps",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationCounter",
+        "kind": 6,
+        "importPath": "admissions.models",
+        "description": "admissions.models",
+        "peekOfCode": "class ApplicationCounter(models.Model):\n    year = models.PositiveIntegerField(\n        unique=True\n    )\n    last_number = models.PositiveIntegerField(\n        default=0\n    )\n    def __str__(self):\n        return f\"{self.year} - {self.last_number}\"\nclass Application(models.Model):",
+        "detail": "admissions.models",
+        "documentation": {}
+    },
+    {
+        "label": "Application",
+        "kind": 6,
+        "importPath": "admissions.models",
+        "description": "admissions.models",
+        "peekOfCode": "class Application(models.Model):\n    STATUS_CHOICES = [\n        (\"draft\", \"Draft\"),\n        (\"pending\", \"Pending\"),\n        (\"under_review\", \"Under Review\"),\n        (\"admitted\", \"Admitted\"),\n        (\"rejected\", \"Rejected\"),\n        (\"cancelled\", \"Cancelled\"),\n    ]\n    id = models.UUIDField(",
+        "detail": "admissions.models",
+        "documentation": {}
+    },
+    {
+        "label": "EducationalQualification",
+        "kind": 6,
+        "importPath": "admissions.models",
+        "description": "admissions.models",
+        "peekOfCode": "class EducationalQualification(models.Model):\n    qualification = models.CharField(max_length=100)\n    def __str__(self):\n        return self.qualification  \nclass Education(models.Model):\n    application = models.OneToOneField(\n        Application,\n        on_delete=models.CASCADE,\n        related_name=\"education\",\n    )",
+        "detail": "admissions.models",
+        "documentation": {}
+    },
+    {
+        "label": "Education",
+        "kind": 6,
+        "importPath": "admissions.models",
+        "description": "admissions.models",
+        "peekOfCode": "class Education(models.Model):\n    application = models.OneToOneField(\n        Application,\n        on_delete=models.CASCADE,\n        related_name=\"education\",\n    )\n    highest_qualification = models.ForeignKey(\n        EducationalQualification, \n        on_delete=models.PROTECT\n    )",
+        "detail": "admissions.models",
+        "documentation": {}
+    },
+    {
+        "label": "Document",
+        "kind": 6,
+        "importPath": "admissions.models",
+        "description": "admissions.models",
+        "peekOfCode": "class Document(models.Model):\n    DOCUMENT_TYPE_CHOICES = [\n        (\"qualification\", \"Highest Qualification Certificate\"),\n        (\"aadhaar\", \"Aadhaar\"),\n        (\"photo\", \"Photo\"),\n        (\"signature\", \"Signature\"),\n    ]\n    id = models.UUIDField(\n        primary_key=True,\n        default=uuid.uuid4,",
+        "detail": "admissions.models",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationStartSerializer",
+        "kind": 6,
+        "importPath": "admissions.serializers",
+        "description": "admissions.serializers",
+        "peekOfCode": "class ApplicationStartSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Application\n        fields = [\n            \"id\",\n            \"application_number\",\n            \"status\",\n            \"created_at\",\n        ]\n        read_only_fields = fields",
+        "detail": "admissions.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationDetailSerializer",
+        "kind": 6,
+        "importPath": "admissions.serializers",
+        "description": "admissions.serializers",
+        "peekOfCode": "class ApplicationDetailSerializer(serializers.ModelSerializer):\n    highest_qualification = serializers.PrimaryKeyRelatedField(\n        queryset=EducationalQualification.objects.all(),\n        required=False,\n        allow_null=True,\n    )\n    class Meta:\n        model = Application\n        fields = [\n            \"id\",",
+        "detail": "admissions.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "EducationalQualificationSerializer",
+        "kind": 6,
+        "importPath": "admissions.serializers",
+        "description": "admissions.serializers",
+        "peekOfCode": "class EducationalQualificationSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EducationalQualification\n        fields = ['id', 'qualification']    \nclass DocumentSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Document\n        fields = [\n            \"id\",\n            \"document_type\",",
+        "detail": "admissions.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "DocumentSerializer",
+        "kind": 6,
+        "importPath": "admissions.serializers",
+        "description": "admissions.serializers",
+        "peekOfCode": "class DocumentSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Document\n        fields = [\n            \"id\",\n            \"document_type\",\n            \"file\",\n            \"uploaded_at\",\n        ]\n        read_only_fields = [",
+        "detail": "admissions.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationSubmitSerializer",
+        "kind": 6,
+        "importPath": "admissions.serializers",
+        "description": "admissions.serializers",
+        "peekOfCode": "class ApplicationSubmitSerializer(serializers.Serializer):\n    \"\"\"\n    Serializer used to validate an application before final submission.\n    \"\"\"\n    def validate(self, attrs):\n        application = self.context[\"application\"]\n        errors = {}\n        # =====================================================\n        # APPLICATION DETAILS\n        # =====================================================",
+        "detail": "admissions.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "create_application",
+        "kind": 2,
+        "importPath": "admissions.services",
+        "description": "admissions.services",
+        "peekOfCode": "def create_application():\n    year = timezone.localdate().year\n    counter, created = ApplicationCounter.objects.select_for_update().get_or_create(\n        year=year,\n        defaults={\n            \"last_number\": 0,\n        },\n    )\n    counter.last_number += 1\n    counter.save(update_fields=[\"last_number\"])",
+        "detail": "admissions.services",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "admissions.urls",
+        "description": "admissions.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\n        \"applications/start/\",\n        StartApplicationView.as_view(),\n        name=\"start-application\",\n    ),\n    path(\n        \"applications/<uuid:pk>/\",\n        ApplicationDetailView.as_view(),\n        name=\"application-detail\",",
+        "detail": "admissions.urls",
+        "documentation": {}
+    },
+    {
+        "label": "StartApplicationView",
+        "kind": 6,
+        "importPath": "admissions.views",
+        "description": "admissions.views",
+        "peekOfCode": "class StartApplicationView(APIView):\n    permission_classes = [AllowAny]\n    @extend_schema(\n        tags=[\"Applications\"],\n        summary=\"Start a new admission application\",\n        description=(\n            \"Creates a new draft admission application and generates \"\n            \"a unique application number for the current year.\"\n        ),\n        request=None,",
+        "detail": "admissions.views",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationDetailView",
+        "kind": 6,
+        "importPath": "admissions.views",
+        "description": "admissions.views",
+        "peekOfCode": "class ApplicationDetailView(APIView):\n    permission_classes = [AllowAny]\n    # =========================================================\n    # GET APPLICATION\n    # =========================================================\n    @extend_schema(\n        tags=[\"Applications\"],\n        summary=\"Get admission application\",\n        description=\"Retrieves an existing admission application.\",\n        responses={",
+        "detail": "admissions.views",
+        "documentation": {}
+    },
+    {
+        "label": "EducationalQualificationListView",
+        "kind": 6,
+        "importPath": "admissions.views",
+        "description": "admissions.views",
+        "peekOfCode": "class EducationalQualificationListView(APIView):\n    permission_classes = [AllowAny]\n    @extend_schema(\n        tags=[\"Educational Qualifications\"],\n        summary=\"List all educational qualifications\",\n        description=\"Retrieves a list of all available educational qualifications.\",\n        responses={\n            200: EducationalQualificationSerializer(many=True),\n        },\n    )",
+        "detail": "admissions.views",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationDocumentUploadView",
+        "kind": 6,
+        "importPath": "admissions.views",
+        "description": "admissions.views",
+        "peekOfCode": "class ApplicationDocumentUploadView(APIView):\n    permission_classes = [AllowAny]\n    parser_classes = [\n        MultiPartParser,\n        FormParser,\n    ]\n    @extend_schema(\n        tags=[\"Documents\"],\n        summary=\"Upload application document\",\n        description=(",
+        "detail": "admissions.views",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationSubmitView",
+        "kind": 6,
+        "importPath": "admissions.views",
+        "description": "admissions.views",
+        "peekOfCode": "class ApplicationSubmitView(APIView):\n    permission_classes = [AllowAny]\n    # =========================================================\n    # FINAL SUBMIT APPLICATION\n    # =========================================================\n    @extend_schema(\n        tags=[\"Applications\"],\n        summary=\"Submit admission application\",\n        description=(\n            \"Validates the complete draft application and \"",
+        "detail": "admissions.views",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "tsc_admission.asgi",
+        "description": "tsc_admission.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "tsc_admission.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\nload_dotenv(BASE_DIR / \".env\")\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = os.getenv(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = os.getenv(\"DEBUG\", \"False\").lower() == \"true\"\nALLOWED_HOSTS = []\nCORS_ALLOWED_ORIGINS = [",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "SECRET_KEY = os.getenv(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = os.getenv(\"DEBUG\", \"False\").lower() == \"true\"\nALLOWED_HOSTS = []\nCORS_ALLOWED_ORIGINS = [\n    origin.strip()\n    for origin in os.getenv(\"CORS_ALLOWED_ORIGINS\", \"\").split(\",\")\n    if origin.strip()\n]\nCORS_ALLOW_ALL_ORIGINS = True",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "DEBUG = os.getenv(\"DEBUG\", \"False\").lower() == \"true\"\nALLOWED_HOSTS = []\nCORS_ALLOWED_ORIGINS = [\n    origin.strip()\n    for origin in os.getenv(\"CORS_ALLOWED_ORIGINS\", \"\").split(\",\")\n    if origin.strip()\n]\nCORS_ALLOW_ALL_ORIGINS = True\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "ALLOWED_HOSTS = []\nCORS_ALLOWED_ORIGINS = [\n    origin.strip()\n    for origin in os.getenv(\"CORS_ALLOWED_ORIGINS\", \"\").split(\",\")\n    if origin.strip()\n]\nCORS_ALLOW_ALL_ORIGINS = True\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOWED_ORIGINS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "CORS_ALLOWED_ORIGINS = [\n    origin.strip()\n    for origin in os.getenv(\"CORS_ALLOWED_ORIGINS\", \"\").split(\",\")\n    if origin.strip()\n]\nCORS_ALLOW_ALL_ORIGINS = True\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOW_ALL_ORIGINS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "CORS_ALLOW_ALL_ORIGINS = True\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Third party",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Third party\n    \"rest_framework\",\n    \"corsheaders\",",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    \"corsheaders.middleware.CorsMiddleware\",\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "ROOT_URLCONF = 'tsc_admission.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [\n            BASE_DIR / \"templates\",\n        ],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [\n            BASE_DIR / \"templates\",\n        ],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.request',",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'tsc_admission.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/6.1/ref/settings/#databases\nDATABASES = {\n    'default': {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": os.getenv(\"DB_NAME\"),\n        \"USER\": os.getenv(\"DB_USER\"),\n        \"PASSWORD\": os.getenv(\"DB_PASSWORD\"),\n        \"HOST\": os.getenv(\"DB_HOST\", \"127.0.0.1\"),",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": os.getenv(\"DB_NAME\"),\n        \"USER\": os.getenv(\"DB_USER\"),\n        \"PASSWORD\": os.getenv(\"DB_PASSWORD\"),\n        \"HOST\": os.getenv(\"DB_HOST\", \"127.0.0.1\"),\n        \"PORT\": os.getenv(\"DB_PORT\", \"5432\"),\n    }\n}",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Email\n# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration\nMAILERS = {",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Email\n# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration\nMAILERS = {\n    'default': {",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Email\n# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration\nMAILERS = {\n    'default': {\n        'BACKEND': 'django.core.mail.backends.console.EmailBackend',",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/6.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Email\n# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration\nMAILERS = {\n    'default': {\n        'BACKEND': 'django.core.mail.backends.console.EmailBackend',\n    },",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "STATIC_URL = 'static/'\n# Email\n# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration\nMAILERS = {\n    'default': {\n        'BACKEND': 'django.core.mail.backends.console.EmailBackend',\n    },\n}\nREST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"drf_spectacular.openapi.AutoSchema\",",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MAILERS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "MAILERS = {\n    'default': {\n        'BACKEND': 'django.core.mail.backends.console.EmailBackend',\n    },\n}\nREST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"drf_spectacular.openapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\": (\n        \"rest_framework_simplejwt.authentication.JWTAuthentication\",\n    ),",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "REST_FRAMEWORK",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "REST_FRAMEWORK = {\n    \"DEFAULT_SCHEMA_CLASS\": \"drf_spectacular.openapi.AutoSchema\",\n    \"DEFAULT_AUTHENTICATION_CLASSES\": (\n        \"rest_framework_simplejwt.authentication.JWTAuthentication\",\n    ),\n    \"DEFAULT_PERMISSION_CLASSES\": (\n        \"rest_framework.permissions.IsAuthenticated\",\n    ),\n}\nSPECTACULAR_SETTINGS = {",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SPECTACULAR_SETTINGS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "SPECTACULAR_SETTINGS = {\n    \"TITLE\": \"Techsche Campus Admission API\",\n    \"DESCRIPTION\": \"API documentation for the Techsche Campus Admission System\",\n    \"VERSION\": \"1.0.0\",\n    \"SERVE_INCLUDE_SCHEMA\": False,\n    \"CONTACT\": {\n        \"name\": \"Techsche Campus\",\n    },\n    \"SECURITY\": [\n        {",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "MEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR / \"media\"\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nLOGIN_URL = \"login\"\nLOGIN_REDIRECT_URL = \"dashboard\"\nLOGOUT_REDIRECT_URL = \"login\"",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / \"media\"\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nLOGIN_URL = \"login\"\nLOGIN_REDIRECT_URL = \"dashboard\"\nLOGOUT_REDIRECT_URL = \"login\"",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "STATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nLOGIN_URL = \"login\"\nLOGIN_REDIRECT_URL = \"dashboard\"\nLOGOUT_REDIRECT_URL = \"login\"",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_DIRS",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nLOGIN_URL = \"login\"\nLOGIN_REDIRECT_URL = \"dashboard\"\nLOGOUT_REDIRECT_URL = \"login\"",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_URL",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "LOGIN_URL = \"login\"\nLOGIN_REDIRECT_URL = \"dashboard\"\nLOGOUT_REDIRECT_URL = \"login\"",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "LOGIN_REDIRECT_URL = \"dashboard\"\nLOGOUT_REDIRECT_URL = \"login\"",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGOUT_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "tsc_admission.settings",
+        "description": "tsc_admission.settings",
+        "peekOfCode": "LOGOUT_REDIRECT_URL = \"login\"",
+        "detail": "tsc_admission.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "tsc_admission.urls",
+        "description": "tsc_admission.urls",
+        "peekOfCode": "urlpatterns = [\n    # Root → Login\n    path(\n        \"\",\n        RedirectView.as_view(\n            pattern_name=\"login\",\n            permanent=False,\n        ),\n    ),\n    # Accounts / Dashboard",
+        "detail": "tsc_admission.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "tsc_admission.wsgi",
+        "description": "tsc_admission.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "tsc_admission.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tsc_admission.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]

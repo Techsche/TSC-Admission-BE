@@ -1,0 +1,46 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/favicon.jpeg' %}"
+    />
+    <title>{% block title %}Techsche Campus{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+    {% block extra_css %}{% endblock %}
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      {% include "includes/sidebar.html" %}
+
+      <!-- MAIN -->
+      <div class="main-wrapper">
+        <!-- HEADER -->
+        {% include "includes/header.html" %}
+
+        <!-- PAGE CONTENT -->
+        <main class="main-content">{% block content %} {% endblock %}</main>
+
+        <!-- FOOTER -->
+        {% include "includes/footer.html" %}
+      </div>
+    </div>
+
+    <script src="{% static 'js/base.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

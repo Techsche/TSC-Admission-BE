@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Dashboard | Techsche Campus
+{% endblock %}
+
+
+{% block page_heading %}
+    Dashboard
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/dashboard.css' %}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="welcome-section">
+
+        <div>
+
+            <h2>
+                Good afternoon, {{ request.user.first_name|default:"Admin" }} 👋
+            </h2>
+
+            <p>
+                Here's what's happening with admissions today.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'applications' %}"
+            class="primary-btn"
+        >
+            <span>+</span>
+            New Application
+        </a>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon total">▣</div>
+
+            <div class="stat-value">
+                {{ total_applications }}
+            </div>
+
+            <div class="stat-label">
+                Total Applications
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon pending">◷</div>
+
+            <div class="stat-value">
+                {{ pending_applications }}
+            </div>
+
+            <div class="stat-label">
+                Pending Review
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon approved">✓</div>
+
+            <div class="stat-value">
+                {{ approved_applications }}
+            </div>
+
+            <div class="stat-label">
+                Approved
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon today">✦</div>
+
+            <div class="stat-value">
+                {{ today_applications }}
+            </div>
+
+            <div class="stat-label">
+                Applications Today
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- REST OF DASHBOARD -->
+    <div class="dashboard-grid">
+
+        <!-- Chart -->
+        <div class="dashboard-card">
+            ...
+        </div>
+
+
+        <!-- Quick Actions -->
+        <div class="dashboard-card">
+            ...
+        </div>
+
+    </div>
+
+
+    <!-- Recent Applications -->
+    <div class="dashboard-card applications-card">
+
+        ...
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+{% endblock %}
