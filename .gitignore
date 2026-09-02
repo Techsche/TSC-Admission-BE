@@ -1,0 +1,50 @@
+# Python
+
+**pycache**/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+
+venv/
+.venv/
+env/
+ENV/
+
+# Django
+
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environment variables / secrets
+
+.env
+.env.*
+!.env.example
+
+# IDE
+
+.vscode/
+.idea/
+
+# OS
+
+.DS_Store
+Thumbs.db
+
+# Python tools
+
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Django migrations
+
+# Keep migration files in Git
+
+# */migrations/*
