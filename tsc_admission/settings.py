@@ -31,9 +31,12 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
-    origin.strip()
-    for origin in os.getenv("ALLOWED_HOSTS", "").split(",")
-    if origin.strip()
+    host.strip()
+    for host in os.getenv(
+        "ALLOWED_HOSTS",
+        "localhost,127.0.0.1"
+    ).split(",")
+    if host.strip()
 ]
 
 CORS_ALLOWED_ORIGINS = [
