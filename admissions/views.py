@@ -31,8 +31,8 @@ class StartApplicationView(APIView):
         tags=["Applications"],
         summary="Start a new admission application",
         description=(
-            "Creates a new draft admission application and generates "
-            "a unique application number for the current year."
+            "Creates a new draft admission application and "
+            "generates a unique application number for the current year."
         ),
         request=None,
         responses={
@@ -41,12 +41,20 @@ class StartApplicationView(APIView):
     )
     def post(self, request):
 
-        application = create_application()
+        application, access_token = create_application()
 
-        serializer = ApplicationStartSerializer(application)
+        serializer = ApplicationStartSerializer(
+            application
+        )
 
         return Response(
-            serializer.data,
+            {
+                "success": True,
+                "data": {
+                    **serializer.data,
+                    "access_token": access_token,
+                },
+            },
             status=status.HTTP_201_CREATED,
         )
 

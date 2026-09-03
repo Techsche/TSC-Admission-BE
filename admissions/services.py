@@ -1,28 +1,47 @@
+import hashlib
+import secrets
+
 from django.db import transaction
 from django.utils import timezone
 
-from .models import Application, ApplicationCounter
+from .models import Application
 
 
-@transaction.atomic
 def create_application():
-    year = timezone.localdate().year
+    with transaction.atomic():
 
-    counter, created = ApplicationCounter.objects.select_for_update().get_or_create(
-        year=year,
-        defaults={
-            "last_number": 0,
-        },
-    )
+        year = timezone.now().year
 
-    counter.last_number += 1
-    counter.save(update_fields=["last_number"])
+        # Generate a secure random access token
+        access_token = secrets.token_urlsafe(32)
 
-    application_number = f"TSC-{year}-{counter.last_number:04d}"
+        # Hash token before storing it
+        access_token_hash = hashlib.sha256(
+            access_token.encode("utf-8")
+        ).hexdigest()
 
-    application = Application.objects.create(
-        application_number=application_number,
-        status="draft",
-    )
+        # Generate application number
+        last_application = (
+            Application.objects
+            .filter(application_number__startswith=f"TSC-{year}-")
+            .order_by("-application_number")
+            .first()
+        )
 
-    return application
+        if last_application:
+            last_number = int(
+                last_application.application_number.split("-")[-1]
+            )
+            next_number = last_number + 1
+        else:
+            next_number = 1
+
+        application_number = f"TSC-{year}-{next_number:04d}"
+
+        application = Application.objects.create(
+            application_number=application_number,
+            status="draft",
+            access_token_hash=access_token_hash,
+        )
+
+        return application, access_token

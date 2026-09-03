@@ -43,11 +43,16 @@ class StudentListView(ListView):
         queryset = (
             Application.objects
             .prefetch_related("documents")
-            .select_related("education__highest_qualification")
+            .select_related(
+                "education__highest_qualification"
+            )
             .order_by("-created_at")
         )
 
-        search = self.request.GET.get("search", "").strip()
+        search = self.request.GET.get(
+            "search",
+            ""
+        ).strip()
 
         if search:
             queryset = queryset.filter(
@@ -62,7 +67,6 @@ class StudentListView(ListView):
             )
 
         return queryset
-
 
 class DocumentsView(LoginRequiredMixin, TemplateView):
     template_name = "documents/documents.html"

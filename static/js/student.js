@@ -1,751 +1,964 @@
-document.addEventListener("DOMContentLoaded", function () {
-  "use strict";
+document.addEventListener("DOMContentLoaded", () => {
+    "use strict";
 
-  /* =====================================================
-       ELEMENTS
-    ====================================================== */
+    const searchInput = document.getElementById("studentSearch");
+    const clearSearch = document.getElementById("clearStudentSearch");
 
-  const searchInput = document.getElementById("studentSearch");
+    const tableBody = document.getElementById("studentsTableBody");
+    const pagination = document.getElementById("studentsPagination");
+    const paginationButtons = document.getElementById("paginationButtons");
 
-  const clearSearch = document.getElementById("clearStudentSearch");
+    const studentCount = document.getElementById("studentCount");
 
-  const tableBody = document.getElementById("studentsTableBody");
+    const paginationStart = document.getElementById("paginationStart");
+    const paginationEnd = document.getElementById("paginationEnd");
+    const paginationTotal = document.getElementById("paginationTotal");
 
-  const paginationButtons = document.getElementById("paginationButtons");
+    const loading = document.getElementById("studentsLoading");
+    const emptyState = document.getElementById("studentsEmpty");
+    const emptyTitle = document.getElementById("studentsEmptyTitle");
+    const emptyMessage = document.getElementById("studentsEmptyMessage");
 
-  const pagination = document.getElementById("studentsPagination");
+    let searchTimer = null;
+    let isLoading = false;
 
-  const loading = document.getElementById("studentsLoading");
 
-  const empty = document.getElementById("studentsEmpty");
+    /* =========================================================
+       GET CURRENT SEARCH
+    ========================================================= */
 
-  const emptyTitle = document.getElementById("studentsEmptyTitle");
-
-  const emptyMessage = document.getElementById("studentsEmptyMessage");
-
-  const studentCount = document.getElementById("studentCount");
-
-  const paginationStart = document.getElementById("paginationStart");
-
-  const paginationEnd = document.getElementById("paginationEnd");
-
-  const paginationTotal = document.getElementById("paginationTotal");
-
-  /* =====================================================
-       STATE
-    ====================================================== */
-
-  let searchTimer = null;
-
-  let currentRequest = null;
-
-  let isLoading = false;
-
-  /* =====================================================
-       SAFETY CHECK
-    ====================================================== */
-
-  if (!searchInput || !tableBody) {
-    console.error("Students page elements could not be found.");
-
-    return;
-  }
-
-  /* =====================================================
-       LOAD STUDENTS
-    ====================================================== */
-
-  function loadStudents(page = 1) {
-    const search = searchInput.value.trim();
-
-    page = parseInt(page, 10) || 1;
-
-    showLoading();
-
-    const params = new URLSearchParams();
-
-    params.set("page", page);
-
-    if (search) {
-      params.set("search", search);
+    function getSearchValue() {
+        return searchInput
+            ? searchInput.value.trim()
+            : "";
     }
 
-    /*
-     * Abort previous request if the user searches
-     * again before the previous request finishes.
-     */
 
-    if (currentRequest) {
-      currentRequest.abort();
+    /* =========================================================
+       BUILD URL
+    ========================================================= */
+
+    function buildUrl(page = 1) {
+        const url = new URL(window.location.href);
+
+        const search = getSearchValue();
+
+        if (search) {
+            url.searchParams.set("search", search);
+        } else {
+            url.searchParams.delete("search");
+        }
+
+        if (page && Number(page) > 1) {
+            url.searchParams.set("page", page);
+        } else {
+            url.searchParams.delete("page");
+        }
+
+        return url;
     }
 
-    currentRequest = new AbortController();
 
-    fetch(`${window.location.pathname}?${params.toString()}`, {
-      method: "GET",
+    /* =========================================================
+       UPDATE BROWSER URL
+    ========================================================= */
 
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        Accept: "application/json",
-      },
+    function updateBrowserUrl(url) {
+        window.history.pushState(
+            {
+                page: url.searchParams.get("page") || "1",
+                search: url.searchParams.get("search") || ""
+            },
+            "",
+            url.pathname + url.search
+        );
+    }
 
-      signal: currentRequest.signal,
-    })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
+
+    /* =========================================================
+       SHOW / HIDE LOADING
+    ========================================================= */
+
+    function showLoading() {
+        isLoading = true;
+
+        if (loading) {
+            loading.hidden = false;
         }
 
-        return response.json();
-      })
+        document.body.classList.add("students-is-loading");
+    }
 
-      .then(function (data) {
-        /*
-         * Update table
-         */
 
-        tableBody.innerHTML = data.html || "";
+    function hideLoading() {
+        isLoading = false;
 
-        /*
-         * Update counters
-         */
-
-        updateCounters(data);
-
-        /*
-         * Update pagination
-         */
-
-        renderPagination(data);
-
-        /*
-         * Update empty state
-         */
-
-        updateEmptyState(Number(data.total || 0), search);
-
-        /*
-         * Update clear button
-         */
-
-        updateClearButton();
-
-        /*
-         * Update browser URL
-         */
-
-        const newUrl = `${window.location.pathname}?${params.toString()}`;
-
-        window.history.replaceState({}, "", newUrl);
-
-        /*
-         * Make sure dynamically inserted
-         * action buttons work.
-         */
-
-        initializeDynamicRows();
-      })
-
-      .catch(function (error) {
-        /*
-         * Ignore aborted requests.
-         */
-
-        if (error.name === "AbortError") {
-          return;
+        if (loading) {
+            loading.hidden = true;
         }
 
-        console.error("Unable to load students:", error);
+        document.body.classList.remove("students-is-loading");
+    }
 
-        /*
-         * Show error inside table.
-         */
 
-        tableBody.innerHTML = `
-                <tr>
-                    <td colspan="10">
-                        <div class="table-empty">
-                            Unable to load students.
-                            Please try again.
-                        </div>
-                    </td>
-                </tr>
-            `;
+    /* =========================================================
+       UPDATE CLEAR BUTTON
+    ========================================================= */
 
-        /*
-         * Hide normal empty state
-         * because this is an error.
-         */
-
-        if (empty) {
-          empty.hidden = true;
+    function updateClearButton() {
+        if (!clearSearch || !searchInput) {
+            return;
         }
 
-        if (pagination) {
-          pagination.hidden = true;
+        clearSearch.hidden = searchInput.value.trim() === "";
+    }
+
+
+    /* =========================================================
+       UPDATE EMPTY STATE
+    ========================================================= */
+
+    function updateEmptyState(total, hasSearch) {
+        if (!emptyState) {
+            return;
         }
-      })
 
-      .finally(function () {
-        currentRequest = null;
+        const isEmpty = Number(total) === 0;
 
-        hideLoading();
-      });
-  }
+        emptyState.hidden = !isEmpty;
 
-  /* =====================================================
+        if (isEmpty) {
+            if (emptyTitle) {
+                emptyTitle.textContent = hasSearch
+                    ? "No results found"
+                    : "No students found";
+            }
+
+            if (emptyMessage) {
+                emptyMessage.textContent = hasSearch
+                    ? "No students match your search. Try a different search term."
+                    : "There are no student applications yet.";
+            }
+        }
+    }
+
+
+    /* =========================================================
        UPDATE COUNTERS
-    ====================================================== */
+    ========================================================= */
 
-  function updateCounters(data) {
-    const total = Number(data.total || 0);
+    function updateCounters(total, start, end) {
+        if (studentCount) {
+            studentCount.textContent = total;
+        }
 
-    if (studentCount) {
-      studentCount.textContent = total;
+        if (paginationStart) {
+            paginationStart.textContent = start;
+        }
+
+        if (paginationEnd) {
+            paginationEnd.textContent = end;
+        }
+
+        if (paginationTotal) {
+            paginationTotal.textContent = total;
+        }
     }
 
-    if (paginationTotal) {
-      paginationTotal.textContent = total;
+
+    /* =========================================================
+       LOAD STUDENTS
+       
+       IMPORTANT:
+       response.text()
+       NOT response.json()
+    ========================================================= */
+
+    async function loadStudents(page = 1, updateHistory = true) {
+
+        if (isLoading) {
+            return;
+        }
+
+        const url = buildUrl(page);
+
+        showLoading();
+
+        try {
+            const response = await fetch(url.toString(), {
+                method: "GET",
+
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+
+                credentials: "same-origin"
+            });
+
+
+            if (!response.ok) {
+                throw new Error(
+                    `HTTP ${response.status}: ${response.statusText}`
+                );
+            }
+
+
+            /*
+             * Django is returning HTML.
+             *
+             * DO NOT use:
+             *
+             * response.json()
+             *
+             * because the response contains:
+             * <tr>...</tr>
+             */
+
+            const html = await response.text();
+
+
+            /*
+             * Parse returned HTML
+             */
+
+            const parser = new DOMParser();
+
+            const doc = parser.parseFromString(
+                html,
+                "text/html"
+            );
+
+
+            /*
+             * Get returned elements
+             */
+
+            const newTableBody =
+                doc.getElementById("studentsTableBody");
+
+            const newPagination =
+                doc.getElementById("studentsPagination");
+
+            const newPaginationButtons =
+                doc.getElementById("paginationButtons");
+
+            const newStudentCount =
+                doc.getElementById("studentCount");
+
+            const newPaginationStart =
+                doc.getElementById("paginationStart");
+
+            const newPaginationEnd =
+                doc.getElementById("paginationEnd");
+
+            const newPaginationTotal =
+                doc.getElementById("paginationTotal");
+
+            const newEmptyState =
+                doc.getElementById("studentsEmpty");
+
+
+            /*
+             * Make sure Django returned the expected HTML
+             */
+
+            if (!newTableBody) {
+                console.error("Returned HTML:");
+
+                console.error(html);
+
+                throw new Error(
+                    "studentsTableBody was not found in the response."
+                );
+            }
+
+
+            /*
+             * Replace table rows
+             */
+
+            if (tableBody) {
+                tableBody.innerHTML =
+                    newTableBody.innerHTML;
+            }
+
+
+            /*
+             * Replace pagination buttons
+             */
+
+            if (
+                paginationButtons &&
+                newPaginationButtons
+            ) {
+                paginationButtons.innerHTML =
+                    newPaginationButtons.innerHTML;
+            }
+
+
+            /*
+             * Update pagination visibility
+             */
+
+            if (pagination) {
+
+                if (newPagination) {
+                    pagination.hidden =
+                        newPagination.hidden;
+                } else {
+                    pagination.hidden = true;
+                }
+            }
+
+
+            /*
+             * Update student count
+             */
+
+            if (
+                studentCount &&
+                newStudentCount
+            ) {
+                studentCount.textContent =
+                    newStudentCount.textContent.trim();
+            }
+
+
+            /*
+             * Update pagination counters
+             */
+
+            if (
+                paginationStart &&
+                newPaginationStart
+            ) {
+                paginationStart.textContent =
+                    newPaginationStart.textContent.trim();
+            }
+
+
+            if (
+                paginationEnd &&
+                newPaginationEnd
+            ) {
+                paginationEnd.textContent =
+                    newPaginationEnd.textContent.trim();
+            }
+
+
+            if (
+                paginationTotal &&
+                newPaginationTotal
+            ) {
+                paginationTotal.textContent =
+                    newPaginationTotal.textContent.trim();
+            }
+
+
+            /*
+             * Update empty state
+             */
+
+            if (emptyState && newEmptyState) {
+
+                emptyState.hidden =
+                    newEmptyState.hidden;
+
+                if (emptyTitle) {
+
+                    const returnedTitle =
+                        newEmptyState.querySelector(
+                            "#studentsEmptyTitle"
+                        );
+
+                    if (returnedTitle) {
+                        emptyTitle.textContent =
+                            returnedTitle.textContent.trim();
+                    }
+                }
+
+
+                if (emptyMessage) {
+
+                    const returnedMessage =
+                        newEmptyState.querySelector(
+                            "#studentsEmptyMessage"
+                        );
+
+                    if (returnedMessage) {
+                        emptyMessage.textContent =
+                            returnedMessage.textContent.trim();
+                    }
+                }
+            }
+
+
+            /*
+             * Get total number of students
+             */
+
+            let total = 0;
+
+            if (newPaginationTotal) {
+                total = parseInt(
+                    newPaginationTotal.textContent.trim(),
+                    10
+                ) || 0;
+            }
+
+
+            /*
+             * Update empty state safely
+             */
+
+            updateEmptyState(
+                total,
+                getSearchValue() !== ""
+            );
+
+
+            /*
+             * Update browser URL
+             *
+             * This is what changes:
+             *
+             * /students/
+             *
+             * to:
+             *
+             * /students/?page=2
+             */
+
+            if (updateHistory) {
+                updateBrowserUrl(url);
+            }
+
+
+            /*
+             * Update search clear button
+             */
+
+            updateClearButton();
+
+
+            /*
+             * Reinitialize dynamic row state
+             */
+
+            initializeDynamicRows();
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load students:",
+                error
+            );
+
+            /*
+             * IMPORTANT:
+             * Do not replace the current table with
+             * an error unless necessary.
+             */
+
+            alert(
+                "Unable to load students. Please try again."
+            );
+
+        } finally {
+
+            hideLoading();
+        }
     }
 
-    if (paginationStart) {
-      paginationStart.textContent = Number(data.start || 0);
-    }
 
-    if (paginationEnd) {
-      paginationEnd.textContent = Number(data.end || 0);
-    }
-  }
-
-  /* =====================================================
+    /* =========================================================
        SEARCH
-    ====================================================== */
+    ========================================================= */
 
-  searchInput.addEventListener("input", function () {
-    updateClearButton();
+    if (searchInput) {
 
-    clearTimeout(searchTimer);
+        searchInput.addEventListener(
+            "input",
+            () => {
 
-    searchTimer = setTimeout(function () {
-      loadStudents(1);
-    }, 350);
-  });
+                updateClearButton();
 
-  /* =====================================================
+                clearTimeout(searchTimer);
+
+                searchTimer = setTimeout(
+                    () => {
+
+                        loadStudents(
+                            1,
+                            true
+                        );
+
+                    },
+                    350
+                );
+            }
+        );
+
+
+        /*
+         * Press Enter
+         */
+
+        searchInput.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    clearTimeout(searchTimer);
+
+                    loadStudents(
+                        1,
+                        true
+                    );
+                }
+            }
+        );
+    }
+
+
+    /* =========================================================
        CLEAR SEARCH
-    ====================================================== */
+    ========================================================= */
 
-  if (clearSearch) {
-    clearSearch.addEventListener("click", function () {
-      searchInput.value = "";
+    if (clearSearch) {
 
-      updateClearButton();
+        clearSearch.addEventListener(
+            "click",
+            () => {
 
-      searchInput.focus();
+                if (searchInput) {
+                    searchInput.value = "";
+                }
 
-      loadStudents(1);
-    });
-  }
+                updateClearButton();
 
-  /* =====================================================
+                loadStudents(
+                    1,
+                    true
+                );
+            }
+        );
+    }
+
+
+    /* =========================================================
        PAGINATION
-    ====================================================== */
+    ========================================================= */
 
-  if (paginationButtons) {
-    paginationButtons.addEventListener("click", function (event) {
-      const button = event.target.closest(".students-page-btn");
+    if (paginationButtons) {
 
-      if (!button) {
-        return;
-      }
+        paginationButtons.addEventListener(
+            "click",
+            (event) => {
 
-      const page = parseInt(button.dataset.page, 10);
+                const button =
+                    event.target.closest(
+                        ".students-page-btn"
+                    );
 
-      if (!page || button.disabled) {
-        return;
-      }
 
-      loadStudents(page);
+                if (!button) {
+                    return;
+                }
 
-      /*
-       * Scroll to students card.
-       */
 
-      const card = document.querySelector(".students-card");
+                const page =
+                    parseInt(
+                        button.dataset.page,
+                        10
+                    );
 
-      if (card) {
-        card.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    });
-  }
 
-  /* =====================================================
-       DELETE STUDENT
-    ====================================================== */
+                if (!page || isNaN(page)) {
+                    return;
+                }
 
-  tableBody.addEventListener("click", function (event) {
-    const deleteButton = event.target.closest(".delete-student");
 
-    if (!deleteButton) {
-      return;
+                event.preventDefault();
+
+
+                loadStudents(
+                    page,
+                    true
+                );
+            }
+        );
     }
 
-    const studentName = deleteButton.dataset.name || "this student";
 
-    const deleteUrl = deleteButton.dataset.deleteUrl;
+    /* =========================================================
+       BROWSER BACK / FORWARD
+    ========================================================= */
 
-    if (!deleteUrl) {
-      console.error("Delete URL is missing.");
+    window.addEventListener(
+        "popstate",
+        () => {
 
-      alert("Unable to delete student.");
+            const url =
+                new URL(window.location.href);
 
-      return;
-    }
 
-    /*
-     * Confirmation
-     */
+            const page =
+                parseInt(
+                    url.searchParams.get("page") || "1",
+                    10
+                );
 
-    const confirmed = window.confirm(
-      `Are you sure you want to delete ${studentName}?`,
+
+            const search =
+                url.searchParams.get("search") || "";
+
+
+            if (searchInput) {
+                searchInput.value = search;
+            }
+
+
+            updateClearButton();
+
+
+            /*
+             * false = don't push another history entry
+             */
+
+            loadStudents(
+                page,
+                false
+            );
+        }
     );
 
-    if (!confirmed) {
-      return;
+
+    /* =========================================================
+       DELETE STUDENT
+    ========================================================= */
+
+    if (tableBody) {
+
+        tableBody.addEventListener(
+            "click",
+            async (event) => {
+
+                const deleteButton =
+                    event.target.closest(
+                        "[data-delete-student]"
+                    );
+
+
+                if (!deleteButton) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                const studentId =
+                    deleteButton.dataset.deleteStudent;
+
+
+                if (!studentId) {
+                    return;
+                }
+
+
+                const confirmed =
+                    window.confirm(
+                        "Are you sure you want to delete this student?"
+                    );
+
+
+                if (!confirmed) {
+                    return;
+                }
+
+
+                await deleteStudent(
+                    studentId
+                );
+            }
+        );
     }
 
-    deleteStudent(deleteUrl, deleteButton);
-  });
 
-  /* =====================================================
+    /* =========================================================
        ACTIVE / INACTIVE TOGGLE
-    ====================================================== */
+    ========================================================= */
 
-  tableBody.addEventListener("click", function (event) {
-    const toggle = event.target.closest(".active-toggle");
+    if (tableBody) {
 
-    if (!toggle) {
-      return;
+        tableBody.addEventListener(
+            "change",
+            async (event) => {
+
+                const toggle =
+                    event.target.closest(
+                        "[data-toggle-active]"
+                    );
+
+
+                if (!toggle) {
+                    return;
+                }
+
+
+                const studentId =
+                    toggle.dataset.toggleActive;
+
+
+                if (!studentId) {
+                    return;
+                }
+
+
+                await toggleStudentActive(
+                    studentId,
+                    toggle.checked
+                );
+            }
+        );
     }
 
-    const toggleUrl = toggle.dataset.toggleUrl;
 
-    if (!toggleUrl) {
-      console.error("Toggle URL is missing.");
+    /* =========================================================
+       DELETE REQUEST
+    ========================================================= */
 
-      return;
-    }
+    async function deleteStudent(studentId) {
 
-    const currentActive = toggle.dataset.active === "true";
+        try {
 
-    /*
-     * Disable while request is running.
-     */
+            const response =
+                await fetch(
+                    `/students/${studentId}/delete/`,
+                    {
+                        method: "POST",
 
-    toggle.disabled = true;
+                        headers: {
+                            "X-CSRFToken": getCsrfToken(),
+                            "X-Requested-With": "XMLHttpRequest",
+                            "Content-Type": "application/json"
+                        },
 
-    fetch(toggleUrl, {
-      method: "POST",
+                        credentials: "same-origin"
+                    }
+                );
 
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRFToken": getCsrfToken(),
-        Accept: "application/json",
-      },
-    })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok || !data.success) {
+
+                throw new Error(
+                    data.message ||
+                    "Unable to delete student."
+                );
+            }
+
+
+            /*
+             * Reload current page.
+             */
+
+            const currentPage =
+                getCurrentPage();
+
+
+            const currentRows =
+                tableBody
+                    ? tableBody.querySelectorAll("tr").length
+                    : 0;
+
+
+            /*
+             * If last row of current page was deleted,
+             * go to previous page.
+             */
+
+            let pageToLoad = currentPage;
+
+            if (
+                currentRows <= 1 &&
+                currentPage > 1
+            ) {
+                pageToLoad =
+                    currentPage - 1;
+            }
+
+
+            await loadStudents(
+                pageToLoad,
+                true
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Unable to delete student:",
+                error
+            );
+
+            alert(
+                error.message ||
+                "Unable to delete student."
+            );
         }
+    }
 
-        return response.json();
-      })
 
-      .then(function (data) {
-        if (!data.success) {
-          throw new Error(data.message || "Unable to update status.");
+    /* =========================================================
+       ACTIVE / INACTIVE REQUEST
+    ========================================================= */
+
+    async function toggleStudentActive(
+        studentId,
+        isActive
+    ) {
+
+        try {
+
+            const response =
+                await fetch(
+                    `/students/${studentId}/toggle-active/`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "X-CSRFToken": getCsrfToken(),
+                            "X-Requested-With": "XMLHttpRequest",
+                            "Content-Type": "application/json"
+                        },
+
+                        credentials: "same-origin",
+
+                        body: JSON.stringify({
+                            is_active: isActive
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok || !data.success) {
+
+                throw new Error(
+                    data.message ||
+                    "Unable to update student status."
+                );
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Unable to update student status:",
+                error
+            );
+
+
+            alert(
+                error.message ||
+                "Unable to update student status."
+            );
+
+
+            /*
+             * Revert checkbox if request failed.
+             */
+
+            const checkbox =
+                tableBody?.querySelector(
+                    `[data-toggle-active="${studentId}"]`
+                );
+
+
+            if (checkbox) {
+                checkbox.checked =
+                    !isActive;
+            }
         }
-
-        const isActive = Boolean(data.is_active);
-
-        toggle.dataset.active = isActive ? "true" : "false";
-
-        toggle.classList.toggle("active", isActive);
-      })
-
-      .catch(function (error) {
-        console.error("Unable to update active status:", error);
-
-        /*
-         * Restore original state.
-         */
-
-        toggle.dataset.active = currentActive ? "true" : "false";
-
-        toggle.classList.toggle("active", currentActive);
-
-        alert("Unable to update student status. Please try again.");
-      })
-
-      .finally(function () {
-        toggle.disabled = false;
-      });
-  });
-
-  /* =====================================================
-       DELETE FUNCTION
-    ====================================================== */
-
-  function deleteStudent(deleteUrl, deleteButton) {
-    /*
-     * Disable button immediately.
-     */
-
-    deleteButton.disabled = true;
-
-    deleteButton.style.pointerEvents = "none";
-
-    showLoading();
-
-    fetch(deleteUrl, {
-      method: "POST",
-
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRFToken": getCsrfToken(),
-        Accept: "application/json",
-      },
-    })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        return response.json();
-      })
-
-      .then(function (data) {
-        if (!data.success) {
-          throw new Error(data.message || "Unable to delete student.");
-        }
-
-        /*
-         * Reload current page.
-         */
-
-        let currentPage = getCurrentPage();
-
-        /*
-         * If this was the last row on the page,
-         * move to previous page.
-         *
-         * Example:
-         *
-         * Page 3 has one student.
-         * Delete it.
-         * Automatically load page 2.
-         */
-
-        const rows = tableBody.querySelectorAll("tr");
-
-        if (rows.length <= 1 && currentPage > 1) {
-          currentPage--;
-        }
-
-        loadStudents(currentPage);
-      })
-
-      .catch(function (error) {
-        console.error("Delete error:", error);
-
-        alert(error.message || "Unable to delete student. Please try again.");
-
-        hideLoading();
-
-        deleteButton.disabled = false;
-
-        deleteButton.style.pointerEvents = "";
-      });
-  }
-
-  /* =====================================================
-       RENDER PAGINATION
-    ====================================================== */
-
-  function renderPagination(data) {
-    if (!paginationButtons) {
-      return;
     }
 
-    paginationButtons.innerHTML = "";
 
-    /*
-     * No records
-     */
+    /* =========================================================
+       GET CURRENT PAGE
+    ========================================================= */
 
-    if (!data.total || Number(data.total) === 0) {
-      if (pagination) {
-        pagination.hidden = true;
-      }
+    function getCurrentPage() {
 
-      return;
+        const url =
+            new URL(window.location.href);
+
+
+        return parseInt(
+            url.searchParams.get("page") || "1",
+            10
+        );
     }
 
-    /*
-     * Previous
-     */
 
-    if (data.has_previous) {
-      addPageButton(data.previous_page, "‹", false, "Previous page");
-    }
-
-    /*
-     * Page numbers
-     */
-
-    if (Array.isArray(data.pages)) {
-      data.pages.forEach(function (page) {
-        /*
-         * Ellipsis
-         */
-
-        if (page === "...") {
-          const dots = document.createElement("span");
-
-          dots.className = "students-pagination-dots";
-
-          dots.textContent = "…";
-
-          paginationButtons.appendChild(dots);
-
-          return;
-        }
-
-        /*
-         * Page button
-         */
-
-        addPageButton(page, page, Number(page) === Number(data.current_page));
-      });
-    }
-
-    /*
-     * Next
-     */
-
-    if (data.has_next) {
-      addPageButton(data.next_page, "›", false, "Next page");
-    }
-  }
-
-  /* =====================================================
-       ADD PAGE BUTTON
-    ====================================================== */
-
-  function addPageButton(page, text, active = false, label = "") {
-    const button = document.createElement("button");
-
-    button.type = "button";
-
-    button.className = "students-page-btn";
-
-    if (active) {
-      button.classList.add("active");
-
-      button.setAttribute("aria-current", "page");
-    }
-
-    button.dataset.page = page;
-
-    button.textContent = text;
-
-    if (label) {
-      button.setAttribute("aria-label", label);
-    }
-
-    paginationButtons.appendChild(button);
-  }
-
-  /* =====================================================
-       EMPTY STATE
-    ====================================================== */
-
-  function updateEmptyState(total, search) {
-    if (!empty) {
-      return;
-    }
-
-    total = Number(total) || 0;
-
-    if (total === 0) {
-      empty.hidden = false;
-
-      if (search) {
-        if (emptyTitle) {
-          emptyTitle.textContent = "No results found";
-        }
-
-        if (emptyMessage) {
-          emptyMessage.textContent =
-            "No students match your search. Try a different search term.";
-        }
-      } else {
-        if (emptyTitle) {
-          emptyTitle.textContent = "No students found";
-        }
-
-        if (emptyMessage) {
-          emptyMessage.textContent = "There are no student applications yet.";
-        }
-      }
-
-      if (pagination) {
-        pagination.hidden = true;
-      }
-    } else {
-      empty.hidden = true;
-
-      if (pagination) {
-        pagination.hidden = false;
-      }
-    }
-  }
-
-  /* =====================================================
-       CLEAR SEARCH BUTTON
-    ====================================================== */
-
-  function updateClearButton() {
-    if (!clearSearch) {
-      return;
-    }
-
-    if (searchInput.value.trim()) {
-      clearSearch.classList.add("visible");
-    } else {
-      clearSearch.classList.remove("visible");
-    }
-  }
-
-  /* =====================================================
-       LOADING
-    ====================================================== */
-
-  function showLoading() {
-    isLoading = true;
-
-    if (loading) {
-      loading.hidden = false;
-    }
-  }
-
-  function hideLoading() {
-    isLoading = false;
-
-    if (loading) {
-      loading.hidden = true;
-    }
-  }
-
-  /* =====================================================
-       CURRENT PAGE
-    ====================================================== */
-
-  function getCurrentPage() {
-    const params = new URLSearchParams(window.location.search);
-
-    const page = parseInt(params.get("page") || "1", 10);
-
-    return page > 0 ? page : 1;
-  }
-
-  /* =====================================================
+    /* =========================================================
        CSRF TOKEN
-    ====================================================== */
+    ========================================================= */
 
-  function getCsrfToken() {
-    /*
-     * First try Django's csrftoken cookie.
-     */
+    function getCsrfToken() {
 
-    const name = "csrftoken=";
+        const cookie =
+            document.cookie
+                .split("; ")
+                .find(
+                    row =>
+                        row.startsWith("csrftoken=")
+                );
 
-    const cookies = document.cookie.split(";");
 
-    for (let cookie of cookies) {
-      cookie = cookie.trim();
+        if (!cookie) {
+            return "";
+        }
 
-      if (cookie.startsWith(name)) {
-        return decodeURIComponent(cookie.substring(name.length));
-      }
+
+        return decodeURIComponent(
+            cookie.split("=")[1]
+        );
     }
 
-    /*
-     * Fallback:
-     * Look for csrfmiddlewaretoken
-     * in the page.
-     */
 
-    const csrfInput = document.querySelector("[name=csrfmiddlewaretoken]");
-
-    if (csrfInput) {
-      return csrfInput.value;
-    }
-
-    return "";
-  }
-
-  /* =====================================================
+    /* =========================================================
        DYNAMIC ROW INITIALIZATION
-    ====================================================== */
+    ========================================================= */
 
-  function initializeDynamicRows() {
-    /*
-     * This function intentionally does not
-     * attach click handlers.
-     *
-     * The table uses event delegation,
-     * so newly loaded AJAX rows work automatically.
-     */
+    function initializeDynamicRows() {
 
-    const rows = tableBody.querySelectorAll("tr");
+        /*
+         * Keep this function even if your rows currently
+         * don't need initialization.
+         *
+         * Any future row-specific JS can be added here.
+         */
 
-    rows.forEach(function (row) {
-      row.classList.add("student-row");
-    });
-  }
+    }
 
-  /* =====================================================
+
+    /* =========================================================
        INITIAL STATE
-    ====================================================== */
+    ========================================================= */
 
-  updateClearButton();
+    updateClearButton();
 
-  /*
-   * Read initial count from Django.
-   */
+    initializeDynamicRows();
 
-  const initialTotal =
-    parseInt(studentCount ? studentCount.textContent.trim() : "0", 10) || 0;
-
-  /*
-   * Initialize empty state.
-   */
-
-  updateEmptyState(initialTotal, searchInput.value.trim());
-
-  /*
-   * Initialize rows.
-   */
-
-  initializeDynamicRows();
-
-  /*
-   * Make sure loader starts hidden.
-   */
-
-  hideLoading();
 });

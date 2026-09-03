@@ -52,7 +52,7 @@ urlpatterns = [
 
     # API
     path(
-        "api/",
+        "api/v1/",
         include("admissions.urls"),
     ),
 

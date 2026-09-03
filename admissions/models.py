@@ -1,5 +1,6 @@
 import uuid
-
+import hashlib
+import secrets
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -39,6 +40,15 @@ class Application(models.Model):
         max_length=30,
         unique=True,
         db_index=True,
+    )
+    
+    access_token_hash = models.CharField(
+        max_length=64,
+        unique=True,
+        editable=False,
+        db_index=True,
+        null=True,
+        blank=True,
     )
 
     # Student Details
@@ -111,6 +121,99 @@ class Application(models.Model):
 
     def __str__(self):
         return f"{self.application_number} - {self.full_name}"
+    
+    
+# =============================================================
+# CURRENT ADDRESS
+# =============================================================
+
+class CurrentAddress(models.Model):
+
+    application = models.OneToOneField(
+        Application,
+        on_delete=models.CASCADE,
+        related_name="current_address",
+    )
+
+    address_line1 = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    address_line2 = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    city = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    district = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    state = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    pincode = models.CharField(
+        max_length=10,
+        blank=True,
+    )
+
+    def __str__(self):
+        return f"{self.application.application_number} - Current Address"
+
+
+# =============================================================
+# PERMANENT ADDRESS
+# =============================================================
+
+class PermanentAddress(models.Model):
+
+    application = models.OneToOneField(
+        Application,
+        on_delete=models.CASCADE,
+        related_name="permanent_address",
+    )
+
+    address_line1 = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    address_line2 = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    city = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    district = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    state = models.CharField(
+        max_length=100,
+        blank=True,
+    )
+
+    pincode = models.CharField(
+        max_length=10,
+        blank=True,
+    )
+
+    def __str__(self):
+        return f"{self.application.application_number} - Permanent Address"
+
     
     
 class EducationalQualification(models.Model):

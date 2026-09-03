@@ -9,11 +9,14 @@
     Students
 {% endblock %}
 
+
 {% block extra_css %}
+
 <link
     rel="stylesheet"
     href="{% static 'css/student.css' %}"
 >
+
 {% endblock %}
 
 
@@ -61,13 +64,16 @@
                 ⌕
             </span>
 
+
             <input
                 type="search"
                 id="studentSearch"
+                value="{{ request.GET.search|default:'' }}"
                 placeholder="Search by application no, name, email or mobile..."
                 autocomplete="off"
                 aria-label="Search students"
             >
+
 
             <button
                 type="button"
@@ -86,14 +92,18 @@
             <div class="students-result-count">
 
                 <strong id="studentCount">
-                    {{ students.paginator.count }}
+                    {{ paginator.count }}
                 </strong>
-        {% if students.paginator.count == 1 %}
-            <span>
-                students
-            </span>
-        {%  endif %} 
-    </div>
+
+                <span>
+                    {% if paginator.count == 1 %}
+                        student
+                    {% else %}
+                        students
+                    {% endif %}
+                </span>
+
+            </div>
 
         </div>
 
@@ -166,7 +176,7 @@
 
                 <tbody id="studentsTableBody">
 
-                    {% if students.object_list %}
+                    {% if page_obj.object_list %}
 
                         {% include "students/_student_rows.html" %}
 
@@ -205,7 +215,7 @@
         <div
             id="studentsEmpty"
             class="students-empty"
-            {% if students.object_list %}
+            {% if page_obj.object_list %}
                 hidden
             {% endif %}
         >
@@ -214,13 +224,17 @@
                 ⌕
             </div>
 
+
             <h3 id="studentsEmptyTitle">
+
                 {% if request.GET.search %}
                     No results found
                 {% else %}
                     No students found
                 {% endif %}
+
             </h3>
+
 
             <p id="studentsEmptyMessage">
 
@@ -245,129 +259,95 @@
         ================================================== -->
 
         <div
-            class="students-pagination"
-            id="studentsPagination"
-            {% if not students.object_list %}
-                hidden
+    class="students-pagination"
+    id="studentsPagination"
+    {% if not page_obj.object_list %}
+        hidden
+    {% endif %}
+>
+
+    <div class="students-pagination-info">
+
+        <span>Showing</span>
+
+        <strong id="paginationStart">
+            {% if page_obj.object_list %}
+                {{ page_obj.start_index }}
+            {% else %}
+                0
             {% endif %}
-        >
+        </strong>
 
-            <div class="students-pagination-info">
+        <span>-</span>
 
-                <span>
-                    Showing
-                </span>
+        <strong id="paginationEnd">
+            {% if page_obj.object_list %}
+                {{ page_obj.end_index }}
+            {% else %}
+                0
+            {% endif %}
+        </strong>
 
-                <strong id="paginationStart">
-                    {% if students.object_list %}
-                        {{ students.start_index }}
-                    {% else %}
-                        0
-                    {% endif %}
-                </strong>
+        <span>of</span>
 
-                <span>
-                    -
-                </span>
+        <strong id="paginationTotal">
+            {{ paginator.count }}
+        </strong>
 
-                <strong id="paginationEnd">
-                    {% if students.object_list %}
-                        {{ students.end_index }}
-                    {% else %}
-                        0
-                    {% endif %}
-                </strong>
-
-                <span>
-                    of
-                </span>
-
-                <strong id="paginationTotal">
-                    {{ students.paginator.count }}
-                </strong>
-
-            </div>
+    </div>
 
 
-            <div
-                id="paginationButtons"
-                class="students-pagination-buttons"
+    <div
+        id="paginationButtons"
+        class="students-pagination-buttons"
+    >
+
+        {% if page_obj.has_previous %}
+
+            <button
+                type="button"
+                class="students-page-btn"
+                data-page="{{ page_obj.previous_page_number }}"
+                aria-label="Previous page"
             >
+                ‹
+            </button>
 
-                {% if students.has_previous %}
+        {% endif %}
 
-                    <button
-                        type="button"
-                        class="students-page-btn"
-                        data-page="{{ students.previous_page_number }}"
-                        aria-label="Previous page"
-                    >
-                        ‹
-                    </button>
 
+        {% for page in paginator.page_range %}
+
+            <button
+                type="button"
+                class="students-page-btn {% if page == page_obj.number %}active{% endif %}"
+                data-page="{{ page }}"
+                {% if page == page_obj.number %}
+                    aria-current="page"
                 {% endif %}
+            >
+                {{ page }}
+            </button>
+
+        {% endfor %}
 
 
-                {% for page in students.paginator.page_range %}
+        {% if page_obj.has_next %}
 
-                    {% if page == students.number %}
+            <button
+                type="button"
+                class="students-page-btn"
+                data-page="{{ page_obj.next_page_number }}"
+                aria-label="Next page"
+            >
+                ›
+            </button>
 
-                        <button
-                            type="button"
-                            class="students-page-btn active"
-                            data-page="{{ page }}"
-                            aria-current="page"
-                        >
-                            {{ page }}
-                        </button>
+        {% endif %}
 
-                    {% elif page == 1 or page == students.paginator.num_pages %}
+    </div>
 
-                        <button
-                            type="button"
-                            class="students-page-btn"
-                            data-page="{{ page }}"
-                        >
-                            {{ page }}
-                        </button>
-
-                    {% elif page >= students.number|add:"-2" and page <= students.number|add:"2" %}
-
-                        <button
-                            type="button"
-                            class="students-page-btn"
-                            data-page="{{ page }}"
-                        >
-                            {{ page }}
-                        </button>
-
-                    {% elif page == students.number|add:"-3" or page == students.number|add:"3" %}
-
-                        <span class="students-pagination-dots">
-                            …
-                        </span>
-
-                    {% endif %}
-
-                {% endfor %}
-
-
-                {% if students.has_next %}
-
-                    <button
-                        type="button"
-                        class="students-page-btn"
-                        data-page="{{ students.next_page_number }}"
-                        aria-label="Next page"
-                    >
-                        ›
-                    </button>
-
-                {% endif %}
-
-            </div>
-
-        </div>
+</div>
 
     </div>
 
